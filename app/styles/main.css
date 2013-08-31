@@ -1,0 +1,13 @@
+@import url("bootstrap/dist/css/bootstrap.min.css");
+@import url("bootstrap/dist/css/bootstrap-theme.min.css");
+
+/* Put your CSS here */
+html, body {
+    margin: 20px;
+}
+
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
