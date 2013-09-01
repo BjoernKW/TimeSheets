@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('TimeSheetsApp', [])
-  .config(function ($routeProvider) {
+angular.module('TimeSheetsApp', ['pascalprecht.translate'])
+  .config(function ($routeProvider, $translateProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -10,4 +10,11 @@ angular.module('TimeSheetsApp', [])
       .otherwise({
         redirectTo: '/'
       });
+    $translateProvider
+      .translations('de_DE', {
+        EMPLOYEE: 'Mitarbeiter',
+        DATE: 'Datum',
+        HOURS: 'Stunden'
+      });
+    $translateProvider.preferredLanguage('de_DE');
   });
