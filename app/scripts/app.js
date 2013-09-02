@@ -1,6 +1,6 @@
 'use strict';
 
-var module = angular.module(
+angular.module(
   'TimeSheetsApp',
   ['pascalprecht.translate']
 ).config(function ($routeProvider, $translateProvider) {
