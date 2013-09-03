@@ -2,7 +2,11 @@
 
 angular.module('TimeSheetsApp').controller(
 	'MainCtrl',
-	function ($scope, $http) {
+	function ($scope, $http, $store) {
+    $store.bind($scope, 'domain');
+    $store.bind($scope, 'apiKey');
+    $scope.viewType = 'ANYTHING';
+
     $scope.projects = [
       { key: 1, value: 'Project 1' },
       { key: 2, value: 'Project 2' },
@@ -10,8 +14,6 @@ angular.module('TimeSheetsApp').controller(
     ];
 
     $scope.displayTimes = function() {
-      console.log('https://' + $scope.domain + '.mite.yo.lk/projects.xml?api_key=' + $scope.apiKey)
-
       $http.defaults.useXDomain = true;
       $http.get('https://' + $scope.domain + '.mite.yo.lk/projects.xml?api_key=' + $scope.apiKey)
         .success(function(data) {

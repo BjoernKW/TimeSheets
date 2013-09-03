@@ -1,0 +1,30 @@
+{
+  "name": "angular-localStorage",
+  "version": "0.1.5",
+  "main": "src/localStorage.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "test",
+    "karma.conf.js"
+  ],
+  "dependencies": {
+    "angular": "~1.0.7",
+    "angular-cookies": "~1.0.7"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.0.7"
+  },
+  "homepage": "https://github.com/agrublev/Angular-localStorage",
+  "_release": "0.1.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.5",
+    "commit": "19a63ea1459184db5fdd60d76513c8f221b5568e"
+  },
+  "_source": "git://github.com/agrublev/Angular-localStorage.git",
+  "_target": "~0.1.5",
+  "_originalSource": "Angular-localStorage",
+  "_direct": true
+}

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TimeSheetsApp', ['pascalprecht.translate', 'ui.select2'])
+angular.module('TimeSheetsApp', ['pascalprecht.translate', 'ui.select2', 'localStorage'])
 	.config(function ($routeProvider, $translateProvider) {
 		$routeProvider
 			.when('/', {
