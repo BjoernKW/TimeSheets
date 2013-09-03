@@ -16,7 +16,8 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should attach projects to the scope', function () {
+  it('should attach projects and time entries to the scope', function () {
     expect(scope.projects).toBeDefined();
+    expect(scope.timeEntries).toBeDefined();
   });
 });

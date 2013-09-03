@@ -5,17 +5,38 @@ angular.module('TimeSheetsApp').controller(
 	function ($scope, $http, $store) {
     $store.bind($scope, 'domain');
     $store.bind($scope, 'apiKey');
+    $store.bind($scope, 'projects');
+    $store.bind($scope, 'project');
+    $store.bind($scope, 'projectName');
+    $store.bind($scope, 'showProjectHeadline');
     $store.bind($scope, 'startDate');
     $store.bind($scope, 'endDate');
+    $store.bind($scope, 'displayStartDate');
+    $store.bind($scope, 'displayEndDate');
+    $store.bind($scope, 'timeEntries');
     $scope.viewType = 'ANYTHING';
 
+    var formatDateForDisplay = function(date) {
+      return ('0' + date.getDate()).slice(-2) + '.' + ('0' + (date.getMonth() + 1)).slice(-2) + '.' + date.getFullYear();
+    };
+
+    var formatDate = function(date) {
+      return date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+    };
+
     var today = new Date();
-    var defaultDateValue = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    var defaultDate = formatDate(today);
 
-    $scope.startDate = defaultDateValue;
-    $scope.endDate = defaultDateValue;
+    if (!$scope.startDate) {
+      $scope.startDate = defaultDate;
+    }
+    if (!$scope.endDate) {
+      $scope.endDate = defaultDate;
+    }
 
-    $scope.projects = [];
+    if (!$scope.showProjectHeadline) {
+      $scope.showProjectHeadline = false;
+    }
 
     var mite;
 
@@ -23,6 +44,7 @@ angular.module('TimeSheetsApp').controller(
       var projects = [];
 
       mite = new Mite({ account: $scope.domain, api_key: $scope.apiKey });
+
       mite.Project.active(function(data) {
         angular.forEach(data, function(object) {
           this.push({ key: object.project.id, value: object.project.customer_name + ': ' + object.project.name });
@@ -34,9 +56,31 @@ angular.module('TimeSheetsApp').controller(
     };
 
     $scope.displayTimes = function() {
-      var mite = new Mite({ account: $scope.domain, api_key: $scope.apiKey });
-      mite.myself(function(data) {
-        alert('Hello, ' + data.user.name + '!')
+      var timeEntries = [];
+
+      if (!mite) {
+        mite = new Mite({ account: $scope.domain, api_key: $scope.apiKey });
+      }
+
+      mite.Project.find($scope.project, function(data) {
+        $scope.$apply(function() {
+          $scope.projectName = data.project.customer_name + ': ' + data.project.name;
+          $scope.displayStartDate = formatDateForDisplay(new Date($scope.startDate));
+          $scope.displayEndDate = formatDateForDisplay(new Date($scope.endDate));
+          $scope.showProjectHeadline = true;
+        });
+      })
+
+      mite.TimeEntry.all({ project_id: $scope.project, from: $scope.startDate, to: $scope.endDate}, function(data) {
+        angular.forEach(data, function(object) {
+          var date = new Date(object.time_entry.date_at);
+          var formattedDate = formatDateForDisplay(date);
+          
+          this.push({ userName: object.time_entry.user_name, date: formattedDate, hours: object.time_entry.minutes / 60 });
+        }, timeEntries);
+        $scope.$apply(function() {
+          $scope.timeEntries = timeEntries;
+        });
       });
     };
   }

@@ -1,6 +1,13 @@
-<h1>TimeSheets</h1>
-
 <div class="row">
+	<div class="col-lg-12">
+		<h1>TimeSheets</h1>
+		<h2 ng-show="showProjectHeadline">{{projectName}}, {{displayStartDate}} - {{displayEndDate}}</h2>
+		<button ng-hide="hideForms" ng-click="hideForms = true" class="btn btn-primary btn-sm">{{ 'HIDE_FORMS' | translate }}</button>
+		<button ng-show="hideForms" ng-click="hideForms = false" class="btn btn-primary btn-sm">{{ 'SHOW_FORMS' | translate }}</button>
+	</div>
+</div>
+<hr>
+<div class="row" ng-hide="hideForms">
 	<div class="col-lg-12 well">
 		<form role="form" ng-submit="login()">
 			<div class="form-group">
@@ -15,7 +22,7 @@
 		</form>
 	</div>
 </div>
-<div class="row">
+<div class="row" ng-hide="hideForms">
 	<div class="col-lg-12 well">
 		<form role="form" ng-submit="displayTimes()">
 			<div class="form-group">
@@ -47,20 +54,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>BW</td>
-					<td>01.10.2013</td>
-					<td>8</td>
-				</tr>
-				<tr>
-					<td>BW</td>
-					<td>02.10.2013</td>
-					<td>8</td>
-				</tr>
-				<tr>
-					<td>BW</td>
-					<td>03.10.2013</td>
-					<td>8</td>
+				<tr ng-repeat="timeEntry in timeEntries">
+					<td>{{timeEntry.userName}}</td>
+					<td>{{timeEntry.date}}</td>
+					<td>{{timeEntry.hours}}</td>
 				</tr>
 			</tbody>
 		</table>

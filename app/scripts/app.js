@@ -25,6 +25,8 @@ angular.module('TimeSheetsApp', ['ngCookies', 'pascalprecht.translate', 'ui.sele
 			ENTER_DOMAIN: 'Bitte geben Sie Ihre Domain ein.',
 			ENTER_API_KEY: 'Bitte geben Sie Ihren API Key ein.',
 			SELECT_PROJECT: 'Bitte wählen Sie ein Projekt aus.',
+			SHOW_FORMS: 'Formulare anzeigen',
+			HIDE_FORMS: 'Formulare verbergen'
 		});
 		$translateProvider.preferredLanguage('de_DE');
 	});
