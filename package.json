@@ -1,6 +1,7 @@
 {
   "name": "timesheets",
   "version": "0.1.0",
+  "repository": "https://github.com/BjoernKW/TimeSheets",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
