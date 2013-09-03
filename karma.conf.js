@@ -16,6 +16,7 @@ module.exports = function(config) {
       'app/bower_components/angular-translate/angular-translate.js',
       'app/bower_components/Angular-localStorage/src/localStorage.js',
       'app/bower_components/angular-ui-select2/src/select2.js',
+      'bower_components/angular-ui-date/src/date.js'
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',

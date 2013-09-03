@@ -5,7 +5,16 @@ angular.module('TimeSheetsApp').controller(
 	function ($scope, $http, $store) {
     $store.bind($scope, 'domain');
     $store.bind($scope, 'apiKey');
+    $store.bind($scope, 'startDate');
+    $store.bind($scope, 'endDate');
     $scope.viewType = 'ANYTHING';
+
+    var today = new Date();
+    var defaultDateValue = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    console.log(defaultDateValue);
+
+    $scope.startDate = defaultDateValue;
+    $scope.endDate = defaultDateValue;
 
     $scope.projects = [
       { key: 1, value: 'Project 1' },

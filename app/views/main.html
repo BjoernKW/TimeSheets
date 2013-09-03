@@ -16,6 +16,14 @@
 				    <option ng-repeat="project in projects" value="{{project.key}}">{{project.value}}</option>
 				</select>
 			</div>
+			<div class="form-group">
+				<label for="startDate">{{ 'START_DATE' | translate }}</label>
+				<input ng-model="startDate" type="date" id="startDate" value={{startDate}}>
+			</div>
+			<div class="form-group">
+				<label for="endDate">{{ 'END_DATE' | translate }}</label>
+				<input ng-model="endDate" type="date" id="endDate" value={{endDate}}>
+			</div>
 			<button type="submit" class="btn btn-default">{{ 'SUBMIT' | translate }}</button>
 		</form>
 	</div>

@@ -3,6 +3,8 @@
 
 @import url("../bower_components/select2/select2.css");
 
+@import url("../bower_components/jquery-ui/themes/smoothness/jquery-ui.css");
+
 /* Put your CSS here */
 html, body {
     margin: 20px;
