@@ -14,7 +14,7 @@
     "angular-cookies": "~1.0.7",
     "angular-sanitize": "~1.0.7",
     "angular-translate": "~1.0.2",
-    "angular-ui-select2": "~0.0.2",
+    "angular-ui-select2": "latest",
     "bootstrap": "~3.0.0"
   },
   "devDependencies": {
