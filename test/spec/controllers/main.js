@@ -15,4 +15,8 @@ describe('Controller: MainCtrl', function () {
       $scope: scope
     });
   }));
+
+  it('should attach projects to the scope', function () {
+    expect(scope.projects).toBeDefined();
+  });
 });
