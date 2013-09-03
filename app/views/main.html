@@ -1,21 +1,19 @@
 <div class="row">
-	<div class="col-lg-12">
-		<form role="form">
+	<div class="col-lg-12 well">
+		<form role="form" ng-submit="displayTimes()">
 			<div class="form-group">
 				<label for="domain">{{ 'DOMAIN' | translate }}</label>
 				<input type="text" class="form-control" id="domain" ng-model="domain" placeholder="{{ 'ENTER_DOMAIN' | translate }}">
 			</div>
 			<div class="form-group">
 				<label for="apiKey">{{ 'API_KEY' | translate }}</label>
-				<input type="apiKey" class="form-control" id="apiKey" ng-model="apiKey" placeholder="{{ 'ENTER_API_KEY' | translate }}">
+				<input type="text" class="form-control" id="apiKey" ng-model="apiKey" placeholder="{{ 'ENTER_API_KEY' | translate }}">
 			</div>
 			<div class="form-group">
 				<label for="project">{{ 'PROJECT' | translate }}</label>
 				<select ui-select2 ng-model="project" data-placeholder="{{ 'SELECT_PROJECT' | translate }}">
 				    <option value=""></option>
-				    <option value="one">First</option>
-				    <option value="two">Second</option>
-				    <option value="three">Third</option>
+				    <option ng-repeat="project in projects" value="{{project.key}}">{{project.value}}</option>
 				</select>
 			</div>
 			<button type="submit" class="btn btn-default">{{ 'SUBMIT' | translate }}</button>

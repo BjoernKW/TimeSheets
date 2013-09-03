@@ -3,15 +3,19 @@
 angular.module('TimeSheetsApp').controller(
 	'MainCtrl',
 	function ($scope, $http) {
-    $scope.awesomeThings = [
-      { key: 'HTML5 Boilerplate', value: 'HTML5 Boilerplate' },
-      { key: 'AngularJS', value: 'AngularJS' },
-      { key: 'Karma', value: 'Karma' }
+    $scope.projects = [
+      { key: 1, value: 'Project 1' },
+      { key: 2, value: 'Project 2' },
+      { key: 3, value: 'Project 3' }
     ];
 
-    $http.defaults.useXDomain = true;
-    $http.get('https://' + $scope.domain + '.mite.yo.lk/projects.xml?api_key=' + $scope.apiKey)
-	    .success(function(data) {
-	    });
+    $scope.displayTimes = function() {
+      console.log('https://' + $scope.domain + '.mite.yo.lk/projects.xml?api_key=' + $scope.apiKey)
+
+      $http.defaults.useXDomain = true;
+      $http.get('https://' + $scope.domain + '.mite.yo.lk/projects.xml?api_key=' + $scope.apiKey)
+        .success(function(data) {
+        });
+    };
   }
 );
