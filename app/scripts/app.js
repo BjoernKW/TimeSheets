@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TimeSheetsApp', ['pascalprecht.translate', 'ui.select2', 'localStorage', 'ui.date'])
+angular.module('TimeSheetsApp', ['ngCookies', 'pascalprecht.translate', 'ui.select2', 'localStorage', 'ui.date'])
 	.config(function ($routeProvider, $translateProvider) {
 		$routeProvider
 			.when('/', {
@@ -15,6 +15,7 @@ angular.module('TimeSheetsApp', ['pascalprecht.translate', 'ui.select2', 'localS
 			EMPLOYEE: 'Mitarbeiter',
 			DATE: 'Datum',
 			HOURS: 'Stunden',
+			LOGIN: 'Anmelden',
 			SUBMIT: 'Abschicken',
 			DOMAIN: 'Domain',
 			API_KEY: 'API Key',

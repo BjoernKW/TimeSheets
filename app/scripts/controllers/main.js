@@ -11,22 +11,33 @@ angular.module('TimeSheetsApp').controller(
 
     var today = new Date();
     var defaultDateValue = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-    console.log(defaultDateValue);
 
     $scope.startDate = defaultDateValue;
     $scope.endDate = defaultDateValue;
 
-    $scope.projects = [
-      { key: 1, value: 'Project 1' },
-      { key: 2, value: 'Project 2' },
-      { key: 3, value: 'Project 3' }
-    ];
+    $scope.projects = [];
+
+    var mite;
+
+    $scope.login = function() {
+      var projects = [];
+
+      mite = new Mite({ account: $scope.domain, api_key: $scope.apiKey });
+      mite.Project.active(function(data) {
+        angular.forEach(data, function(object) {
+          this.push({ key: object.project.id, value: object.project.customer_name + ': ' + object.project.name });
+        }, projects);
+        $scope.$apply(function() {
+          $scope.projects = projects;
+        });
+      });
+    };
 
     $scope.displayTimes = function() {
-      $http.defaults.useXDomain = true;
-      $http.get('https://' + $scope.domain + '.mite.yo.lk/projects.xml?api_key=' + $scope.apiKey)
-        .success(function(data) {
-        });
+      var mite = new Mite({ account: $scope.domain, api_key: $scope.apiKey });
+      mite.myself(function(data) {
+        alert('Hello, ' + data.user.name + '!')
+      });
     };
   }
 );
