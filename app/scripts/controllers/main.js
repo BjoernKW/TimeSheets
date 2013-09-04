@@ -27,6 +27,8 @@ angular.module('TimeSheetsApp').controller(
     var today = new Date();
     var defaultDate = formatDate(today);
 
+    $scope.currentYear = today.getFullYear();
+
     if (!$scope.startDate) {
       $scope.startDate = defaultDate;
     }
