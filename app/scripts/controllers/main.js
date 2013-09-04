@@ -3,7 +3,7 @@
 angular.module('TimeSheetsApp').controller(
 	'MainCtrl',
 	function ($scope, $http, $store) {
-    $store.bind($scope, 'domain');
+    $store.bind($scope, 'accountName');
     $store.bind($scope, 'apiKey');
     $store.bind($scope, 'projects');
     $store.bind($scope, 'project');
@@ -14,6 +14,7 @@ angular.module('TimeSheetsApp').controller(
     $store.bind($scope, 'displayStartDate');
     $store.bind($scope, 'displayEndDate');
     $store.bind($scope, 'timeEntries');
+    $store.bind($scope, 'totalMinutes');
     $scope.viewType = 'ANYTHING';
 
     var formatDateForDisplay = function(date) {
@@ -45,7 +46,7 @@ angular.module('TimeSheetsApp').controller(
     $scope.login = function() {
       var projects = [];
 
-      mite = new Mite({ account: $scope.domain, api_key: $scope.apiKey });
+      mite = new Mite({ account: $scope.accountName, api_key: $scope.apiKey });
 
       mite.Project.active(function(data) {
         angular.forEach(data, function(object) {
@@ -59,9 +60,10 @@ angular.module('TimeSheetsApp').controller(
 
     $scope.displayTimes = function() {
       var timeEntries = [];
+      var totalMinutes = 0;
 
       if (!mite) {
-        mite = new Mite({ account: $scope.domain, api_key: $scope.apiKey });
+        mite = new Mite({ account: $scope.accountName, api_key: $scope.apiKey });
       }
 
       mite.Project.find($scope.project, function(data) {
@@ -79,9 +81,11 @@ angular.module('TimeSheetsApp').controller(
           var formattedDate = formatDateForDisplay(date);
           
           this.push({ userName: object.time_entry.user_name, date: formattedDate, hours: object.time_entry.minutes / 60 });
+          totalMinutes += object.time_entry.minutes;
         }, timeEntries);
         $scope.$apply(function() {
           $scope.timeEntries = timeEntries;
+          $scope.totalMinutes = totalMinutes;
         });
       });
     };
