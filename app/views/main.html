@@ -1,9 +1,10 @@
 <div class="row">
 	<div class="col-lg-12">
-		<h1>TimeSheets</h1>
+		<h1>{{headline}}</h1>
 		<h2 ng-show="showProjectHeadline">{{projectName}}, {{displayStartDate}} - {{displayEndDate}}</h2>
 		<button ng-hide="hideForms" ng-click="hideForms = true" class="btn btn-primary btn-sm">{{ 'HIDE_FORMS' | translate }}</button>
-		<button ng-show="hideForms" ng-click="hideForms = false" class="btn btn-primary btn-sm">{{ 'SHOW_FORMS' | translate }}</button>
+		<button ng-show="hideForms && !hideButtons" ng-click="hideForms = false" class="btn btn-primary btn-sm">{{ 'SHOW_FORMS' | translate }}</button>
+		<button ng-show="hideForms && !hideButtons" ng-click="hideButtons = true" class="btn btn-default btn-sm">{{ 'HIDE_BUTTONS' | translate }}</button>
 	</div>
 </div>
 <hr>
@@ -43,6 +44,16 @@
 		</form>
 	</div>
 </div>
+<div class="row" ng-hide="hideForms">
+	<div class="col-lg-12 well">
+		<form role="form">
+			<div class="form-group">
+				<label for="headline">{{ 'HEADLINE' | translate }}</label>
+				<input type="text" class="form-control" id="headline" ng-model="headline" placeholder="{{ 'ENTER_HEADLINE' | translate }}">
+			</div>
+		</form>
+	</div>
+</div>
 <div class="row">
 	<div class="col-lg-12">
 		<table class="table table-striped table-bordered table-hover">
@@ -53,6 +64,13 @@
 					<th>{{ 'HOURS' | translate }}</th>
 				</tr>
 			</thead>
+			<tfoot>
+				<tr>
+					<td>&nbsp;</td>
+					<td><strong>{{ 'TOTAL' | translate }}</strong></td>
+					<td><strong>{{totalHours}}</strong></td>
+				</tr>
+			</tfoot>
 			<tbody>
 				<tr ng-repeat="timeEntry in timeEntries">
 					<td>{{timeEntry.userName}}</td>

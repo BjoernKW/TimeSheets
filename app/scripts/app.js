@@ -25,8 +25,11 @@ angular.module('TimeSheetsApp', ['ngCookies', 'pascalprecht.translate', 'ui.sele
 			ENTER_ACCOUNT_NAME: 'Bitte geben Sie Ihren Kontonamen ein.',
 			ENTER_API_KEY: 'Bitte geben Sie Ihren API Key ein.',
 			SELECT_PROJECT: 'Bitte wählen Sie ein Projekt aus.',
+			ENTER_HEADLINE: 'Bitte geben Sie einen Titel ein.',
 			SHOW_FORMS: 'Formulare anzeigen',
-			HIDE_FORMS: 'Formulare verbergen'
+			HIDE_FORMS: 'Formulare verbergen',
+			HIDE_BUTTONS: 'Buttons verbergen',
+			TOTAL: 'Gesamt'
 		});
 		$translateProvider.preferredLanguage('de_DE');
 	});

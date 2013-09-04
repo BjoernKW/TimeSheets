@@ -15,6 +15,8 @@ angular.module('TimeSheetsApp').controller(
     $store.bind($scope, 'displayEndDate');
     $store.bind($scope, 'timeEntries');
     $store.bind($scope, 'totalMinutes');
+    $store.bind($scope, 'totalHours');
+    $store.bind($scope, 'headline');
     $scope.viewType = 'ANYTHING';
 
     var formatDateForDisplay = function(date) {
@@ -37,8 +39,19 @@ angular.module('TimeSheetsApp').controller(
       $scope.endDate = defaultDate;
     }
 
+    if (!$scope.headline) {
+      $scope.headline = 'TimeSheets';
+    }
+
     if (!$scope.showProjectHeadline) {
       $scope.showProjectHeadline = false;
+    }
+
+    if (!$scope.totalMinutes) {
+      $scope.totalMinutes = 0;
+    }
+    if (!$scope.totalHours) {
+      $scope.totalHours = 0;
     }
 
     var mite;
@@ -86,6 +99,7 @@ angular.module('TimeSheetsApp').controller(
         $scope.$apply(function() {
           $scope.timeEntries = timeEntries;
           $scope.totalMinutes = totalMinutes;
+          $scope.totalHours = totalMinutes / 60;
         });
       });
     };
